@@ -1,0 +1,1504 @@
+<div className='contact-container'>
+        <div className='contact-form'>
+          <h2 className='heading-underline'>Get In Touch</h2>
+          <form>
+            <div className='form-group'>
+              <input type='text' placeholder='Name' required />
+            </div>
+            <div className='form-group'>
+              <input type='text' placeholder='Subject' required />
+            </div>
+            <div className='form-group'>
+              <input type='email' placeholder='Email' required />
+            </div>
+            <div className='form-group'>
+              <textarea placeholder='Message' rows='4' required></textarea>
+            </div>
+            <button type='submit' className='btn-submit'>
+              Send
+            </button>
+          </form>
+        </div>
+
+        <div className='contact-info'>
+          <h2 className='heading-underline'>Our Address</h2>
+          <div className='info-item'>
+            <span className='icon'>&#x1F4CD;</span>
+            <span className='text'>#234 New Street, Michigan, USA</span>
+          </div>
+          <div className='info-item'>
+            <span className='icon'>&#x1F4DE;</span>
+            <span className='text'>+880 123 456 789</span>
+          </div>
+          <div className='info-item'>
+            <span className='icon'>&#x1F4E7;</span>
+            <span className='text'>contact@tomato.com</span>
+          </div>
+          <div className='info-item'>
+            <span className='icon'>&#x1F4BB;</span>
+            <span className='text'>www.tomato.com</span>
+          </div>
+        </div>
+      </div>
+      <div className='map-frame container'>
+        <iframe
+          src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d54041.18453750016!2d74.1736448!3d32.161792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1721837182921!5m2!1sen!2s'
+          width='100%'
+          height={450}
+          style={{ border: 0 }}
+          allowFullScreen
+          loading='lazy'
+          referrerPolicy='no-referrer-when-downgrade'
+        />
+      </div>
+
+
+
+
+      /---------------- CSS --------------/
+
+
+      /* contact.css */
+
+.contact-container {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    padding: 50px;
+    margin: 0 auto;
+    max-width: 1500px;
+    gap: 20px;
+}
+
+.contact-form,
+.contact-info {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    height: 30rem;
+}
+
+.contact-form h2,
+.contact-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.btn-submit {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #ff4500;
+}
+
+.contact-info {
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon {
+    font-size: 20px;
+    color: #ff6347;
+    margin-right: 15px;
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+.text {
+    font-size: 16px;
+    color: #333;
+}
+
+@media (min-width: 768px) {
+    .contact-container {
+        flex-direction: row;
+    }
+}
+
+
+.contact-heading {
+    color: #d9d9d9;
+    /* background-color: #323232; */
+    background: url('/bg.jpg') no-repeat bottom center/cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 50vh;
+    font-size: 3.5rem;
+    line-height: 15vw;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+}
+
+.overlay {
+    border-image: fill 0 linear-gradient(#0003, #0006);
+}
+
+.map-frame {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+<-------------------------------- Collection Left JSX ----------------------------->
+
+import React, { useContext } from 'react'
+
+import './SideBar.css'
+import { StoreContext } from '../../context/StoreContext'
+import { assets } from '../../assets/assets'
+
+const SideBar = () => {
+  const { food_list, category, cartItems, addToCart, removeFromCart } =
+    useContext(StoreContext)
+
+  return (
+    <section className='collectionleft container mt-5 mb-5 pb-5 pt-md-5'>
+      <div className='collectionleft-inner '>
+        <div className='row px-sm-0 px-4 '>
+          {/*main col 1 */}
+          <div className='col-lg-3 p-0 '>
+            <div className='d-none d-lg-block '>
+              <div className='collection-filter'>
+                {/* categories  */}
+                <div>
+                  <h5 className='text-uppercase fw-bold ps-1 mb-5 mt-2  '>
+                    <i className='fa-solid fa-bars fa-xs pe-2 ' />
+                    Categories
+                  </h5>
+                  <div className='row custom-padding'>
+                    <div className='col-12 mb-1 p-1 collection-bg'>Hoodies</div>
+                    <div className='col-12 mb-1 p-1 collection-bg'>
+                      Couple Tee
+                    </div>
+                    <div className='col-12 mb-1 p-1 collection-bg'>
+                      Funny Quotes
+                    </div>
+                    <div className='col-12 mb-1 p-1 collection-bg'>Man</div>
+                    <div className='col-12 mb-1 p-1 collection-bg'>Mug</div>
+                  </div>
+                  {/* Accordion   */}
+                  <div
+                    className='accordion accordion-flush collection-acordians'
+                    id='seeMore'
+                  >
+                    {/* 1 */}
+                    <div className='accordion-item'>
+                      <div
+                        id='collapseOneSeeMore'
+                        className='accordion-collapse collapse '
+                        data-bs-parent='#accordionExample'
+                      >
+                        <div className='accordion-body px-0 '>
+                          <h6 className='accordian-h6 w-100 mb-1 '>1</h6>
+                          <h6 className='accordian-h6 w-100 mb-1 '>3</h6>
+                          <h6 className='accordian-h6 w-100 mb-1 '>3</h6>
+                          <h6 className='accordian-h6 w-100 mb-1 '>4</h6>
+                          <h6 className='accordian-h6 w-100 mb-1 '>5</h6>
+                        </div>
+                      </div>
+                      <h2 className='accordion-header'>
+                        <button
+                          className='accordion-button collapsed px-0 fs-6  accordian-h6 rounded-0 '
+                          type='button'
+                          data-bs-toggle='collapse'
+                          data-bs-target='#collapseOneSeeMore'
+                          aria-expanded='true'
+                          aria-controls='collapseOne'
+                        >
+                          See More
+                          <i className='fa-solid fa-plus fa-xs ps-2 ' />
+                        </button>
+                      </h2>
+                    </div>
+                  </div>
+                  <h5 className='text-uppercase fw-bold mt-4  pb-2 '>
+                    <i className='fa-solid fa-bars fa-xs pe-2 ' />
+                    Filter By
+                  </h5>
+                  <hr />
+                </div>
+                {/* clear filter  */}
+                <div className='clear-filter mt-4 mb-4 '>
+                  <button className='border-0 p-2 w-100  rounded-5 clr-btn '>
+                    Clear All
+                  </button>
+                  <ul>{/* <li></li> */}</ul>
+                </div>
+                <hr />
+                {/* Avalibility  */}
+                <div className='filter-avalibility mt-4  mb-4 '>
+                  <div className='d-flex justify-content-between align-items-center  mt-4'>
+                    <h6 className='text-uppercase fw-bold  text-uppercase'>
+                      <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                      Avalibility
+                    </h6>
+                    <p>reset</p>
+                  </div>
+                  <div>
+                    <div className='in-stock d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        In Stock
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='out-stock d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Out of Stock
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                {/* product type  */}
+                <div className='filter-producttype mt-4  mb-4 '>
+                  <div className='d-flex justify-content-between  mt-4'>
+                    <h6 className='text-uppercase fw-bold  text-uppercase'>
+                      <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                      Product types
+                    </h6>
+                    <p>reset</p>
+                  </div>
+                  <div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Men
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        women
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        blouses
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Denim
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Jacket
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Jeans
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Outer Wear
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Trouser
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                {/* more filter */}
+                <div className='filter-more mt-4  mb-4 '>
+                  <div className='d-flex justify-content-between  mt-4'>
+                    <h6 className='text-uppercase fw-bold  '>
+                      <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                      more filter
+                    </h6>
+                    <p>reset</p>
+                  </div>
+                  <div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Men
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        women
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        blouses
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Denim
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Jacket
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Jeans
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Outer Wear
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Trouser
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                {/* brand filter */}
+                <div className='filter-brand mt-4  mb-4 '>
+                  <div className='d-flex justify-content-between  mt-4'>
+                    <h6 className='text-uppercase fw-bold  '>
+                      <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                      Brand
+                    </h6>
+                    <p>reset</p>
+                  </div>
+                  <div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Men
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        women
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        blouses
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Denim
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Jacket
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Jeans
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Outer Wear
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Trouser
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                {/* Material filter */}
+                <div className='filter-material mt-4  mb-4 '>
+                  <div className='d-flex justify-content-between  mt-4'>
+                    <h6 className='text-uppercase fw-bold  '>
+                      <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                      Material
+                    </h6>
+                    <p>reset</p>
+                  </div>
+                  <div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Men
+                      </label>
+                      <h6>(22)</h6>
+                    </div>
+                    <div className='d-flex justify-content-between '>
+                      <label className='checkbox-container'>
+                        <input type='checkbox' />
+                        <span className='checkmark' />
+                        Trouser
+                      </label>
+                      <h6>(3)</h6>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                {/* Size filter */}
+                <div className='filter-size mt-4  mb-4 '>
+                  <div className='d-flex justify-content-between  mt-4'>
+                    <h6 className='text-uppercase fw-bold  '>
+                      <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                      Size
+                    </h6>
+                    <p>reset</p>
+                  </div>
+                  <div className='d-flex flex-wrap gap-2 '>
+                    <div className='size-box'>XS</div>
+                    <div className='size-box'>S</div>
+                    <div className='size-box'>M</div>
+                    <div className='size-box'>L</div>
+                    <div className='size-box'>XL</div>
+                    <div className='size-box'>XXL</div>
+                    <div className='size-box'>3XL</div>
+                    <div className='size-box'>4XL</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* on small screen  */}
+            <div
+              className='filter-small d-lg-none d-block '
+              type='button'
+              data-bs-toggle='offcanvas'
+              data-bs-target='#leftsideFilter'
+              aria-controls='offcanvasNavbar'
+              aria-label='Toggle navigation'
+            >
+              <h6 className='text-uppercase fw-bold mt-4  pb-2 '>
+                <i className='fa-solid fa-bars fa-xs pe-2 ' />
+                Filter By <i className='fa-solid fa-angle-down ps-1 ' />
+              </h6>
+            </div>
+            {/*side filter left offcanvas start (click  menu-button) */}
+            <div
+              className=' offcanvas offcanvas-start '
+              tabIndex={-1}
+              id='leftsideFilter'
+              aria-labelledby='offcanvasNavbarLabel'
+            >
+              <div className='offcanvas-body d-flex  flex-column justify-content-between '>
+                <div className='collection-filter'>
+                  {/* categories  */}
+                  <div>
+                    <button
+                      type='button'
+                      className='btn-close fs-6 position-absolute top-0 end-0 '
+                      data-bs-dismiss='offcanvas'
+                      aria-label='Close'
+                    />
+                    <h5 className='text-uppercase fw-bold ps-1 mb-4 mt-2  '>
+                      <i className='fa-solid fa-bars fa-xs pe-2 ' />
+                      Categories
+                    </h5>
+                    <div className='row custom-padding'>
+                      <div className='col-12 mb-1 p-1 collection-bg'>
+                        Hoodies
+                      </div>
+                      <div className='col-12 mb-1 p-1 collection-bg'>
+                        Couple Tee
+                      </div>
+                      <div className='col-12 mb-1 p-1 collection-bg'>
+                        Funny Quotes
+                      </div>
+                      <div className='col-12 mb-1 p-1 collection-bg'>Man</div>
+                      <div className='col-12 mb-1 p-1 collection-bg'>Mug</div>
+                    </div>
+                    {/* Accordion   */}
+                    <div
+                      className='accordion accordion-flush collection-acordians'
+                      id='seeMore'
+                    >
+                      {/* 1 */}
+                      <div className='accordion-item'>
+                        <div
+                          id='collapseOneSeeMore'
+                          className='accordion-collapse collapse '
+                          data-bs-parent='#accordionExample'
+                        >
+                          <div className='accordion-body px-0 '>
+                            <h6 className='accordian-h6 w-100 mb-1 '>1</h6>
+                            <h6 className='accordian-h6 w-100 mb-1 '>3</h6>
+                            <h6 className='accordian-h6 w-100 mb-1 '>3</h6>
+                            <h6 className='accordian-h6 w-100 mb-1 '>4</h6>
+                            <h6 className='accordian-h6 w-100 mb-1 '>5</h6>
+                          </div>
+                        </div>
+                        <h2 className='accordion-header'>
+                          <button
+                            className='accordion-button collapsed px-0 fs-6  accordian-h6 rounded-0 '
+                            type='button'
+                            data-bs-toggle='collapse'
+                            data-bs-target='#collapseOneSeeMore'
+                            aria-expanded='true'
+                            aria-controls='collapseOne'
+                          >
+                            See More
+                            <i className='fa-solid fa-plus fa-xs ps-2 ' />
+                          </button>
+                        </h2>
+                      </div>
+                    </div>
+                    <h5 className='text-uppercase fw-bold mt-4  pb-2 '>
+                      <i className='fa-solid fa-bars fa-xs pe-2 ' />
+                      Filter By
+                    </h5>
+                    <hr />
+                  </div>
+                  {/* clear filter  */}
+                  <div className='clear-filter mt-4 mb-4 '>
+                    <button className='border-0 p-2 w-100  rounded-5 clr-btn '>
+                      Clear All
+                    </button>
+                    <ul>{/* <li></li> */}</ul>
+                  </div>
+                  <hr />
+                  {/* Avalibility  */}
+                  <div className='filter-avalibility mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between align-items-center  mt-4'>
+                      <h6 className='text-uppercase fw-bold  text-uppercase'>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        Avalibility
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div>
+                      <div className='in-stock d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          In Stock
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='out-stock d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Out of Stock
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* product type  */}
+                  <div className='filter-producttype mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between  mt-4'>
+                      <h6 className='text-uppercase fw-bold  text-uppercase'>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        Product types
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Men
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          women
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          blouses
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Denim
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Jacket
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Jeans
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Outer Wear
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Trouser
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* more filter */}
+                  <div className='filter-more mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between  mt-4'>
+                      <h6 className='text-uppercase fw-bold  '>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        more filter
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Men
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          women
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          blouses
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Denim
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Jacket
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Jeans
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Outer Wear
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Trouser
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* brand filter */}
+                  <div className='filter-brand mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between  mt-4'>
+                      <h6 className='text-uppercase fw-bold  '>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        Brand
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Men
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          women
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          blouses
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Denim
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Jacket
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Jeans
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Outer Wear
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Trouser
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* color filter */}
+                  <div className='filter-color mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between  mt-4'>
+                      <h6 className='text-uppercase fw-bold  '>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        Color
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div>
+                      {/* Color options */}
+                      <ul className='color-options'>
+                        <li className='color-option active'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                        <li className='color-option'>
+                          <span />
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* Material filter */}
+                  <div className='filter-material mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between  mt-4'>
+                      <h6 className='text-uppercase fw-bold  '>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        Material
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Men
+                        </label>
+                        <h6>(22)</h6>
+                      </div>
+                      <div className='d-flex justify-content-between '>
+                        <label className='checkbox-container'>
+                          <input type='checkbox' />
+                          <span className='checkmark' />
+                          Trouser
+                        </label>
+                        <h6>(3)</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* Size filter */}
+                  <div className='filter-size mt-4  mb-4 '>
+                    <div className='d-flex justify-content-between  mt-4'>
+                      <h6 className='text-uppercase fw-bold  '>
+                        <i className='fa-solid fa-chevron-up fa-sm pe-3 ' />
+                        Size
+                      </h6>
+                      <p>reset</p>
+                    </div>
+                    <div className='d-flex flex-wrap gap-2 '>
+                      <div className='size-box'>XS</div>
+                      <div className='size-box'>S</div>
+                      <div className='size-box'>M</div>
+                      <div className='size-box'>L</div>
+                      <div className='size-box'>XL</div>
+                      <div className='size-box'>XXL</div>
+                      <div className='size-box'>3XL</div>
+                      <div className='size-box'>4XL</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*filter left offcanvas end */}
+          </div>
+          <div className='col-lg-9 product-filter'>
+            {food_list.map((item, index) => {
+              if (category === 'All' || category === item.category) {
+                return (
+                  <div key={index} className='food-item'>
+                    <div className='food-item-img-container'>
+                      <img
+                        className='food-item-image'
+                        src={item.image}
+                        alt='food_image'
+                      />
+                      {!cartItems[item._id] ? (
+                        <img
+                          className='add'
+                          onClick={() => addToCart(item._id)}
+                          src={assets.add_icon_white}
+                          alt='add_icon'
+                        />
+                      ) : (
+                        <div className='food-item-counter'>
+                          <img
+                            onClick={() => removeFromCart(item._id)}
+                            src={assets.remove_icon_red}
+                            alt='remove_icon'
+                          />
+                          <p>{cartItems[item._id]}</p>
+                          <img
+                            onClick={() => addToCart(item._id)}
+                            src={assets.add_icon_green}
+                            alt='add_icon'
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <div className='food-item-info'>
+                      <div className='food-item-name-rating'>
+                        <p>{item.name}</p>
+                        <img src={assets.rating_starts} alt='rating_stars' />
+                      </div>
+                      <p className='food-item-desc'>{item.description}</p>
+                      <p className='food-item-price'>${item.price}</p>
+                    </div>
+                  </div>
+                )
+              }
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default SideBar
+
+------------------------------------------------
+
+<input
+                type='checkbox'
+                className='category-checkbox'
+                checked={category.includes(item.menu_name)}
+                onChange={() =>
+                  setCategory((prev) =>
+                    prev === item.menu_name ? 'All' : item.menu_name
+                  )
+                }
+              />
+
+
+
+
+
+import React, { useContext, useState } from 'react'
+import './SideBar.css'
+
+import { menu_list, food_list } from '../../assets/assets'
+import { StoreContext } from '../../context/StoreContext'
+
+const Sidebar = () => {
+  const { category, setCategory } = useContext(StoreContext)
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const clearFilters = () => {
+    setCategory('All')
+    setSearchTerm('')
+  }
+
+  const filteredCategories = food_list.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+  console.log(filteredCategories)
+
+  //   const toggleCategory = (category) => {
+  //     setSelectedCategories((prevSelected) =>
+  //       prevSelected.includes(category)
+  //         ? prevSelected.filter((cat) => cat !== category)
+  //         : [...prevSelected, category]
+  //     )
+  //   }
+
+  return (
+    <aside className='sidebar'>
+      <div className='sidebar-header'>
+        <h2>Filter Food</h2>
+      </div>
+      <div className='search-container'>
+        <input
+          type='text'
+          className='search-input'
+          placeholder='Search categories...'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <ul className='categories'>
+        {menu_list.map((item, index) => (
+          <li key={index}>
+            <label>
+              <input
+                type='checkbox'
+                className='category-checkbox'
+                checked={category.includes(item.menu_name)}
+                onChange={() =>
+                  setCategory((prev) =>
+                    prev === item.menu_name ? 'All' : item.menu_name
+                  )
+                }
+              />
+              {item.menu_name}
+            </label>
+          </li>
+        ))}
+      </ul>
+      <button className='clear-filters' onClick={clearFilters}>
+        Clear Filters
+      </button>
+    </aside>
+  )
+}
+
+export default Sidebar
+
+
+
+--------------------------------------------------------------
+
+import React, { useContext } from 'react'
+import './SideBar.css'
+
+import { menu_list, food_list } from '../../assets/assets'
+import { StoreContext } from '../../context/StoreContext'
+
+const Sidebar = () => {
+  const {
+    category,
+    setCategory,
+    handleFilterChange,
+    searchTerm,
+    setSearchTerm,
+    setFilteredItems,
+  } = useContext(StoreContext)
+
+  const clearFilters = () => {
+    setCategory('All')
+    setSearchTerm('')
+    setFilteredItems(food_list)
+  }
+
+  //   const filteredCategories = food_list.filter((item) =>
+  //     item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  //   console.log(filteredCategories)
+
+  return (
+    <aside className='sidebar'>
+      <div className='sidebar-header'>
+        <h2>Filter Food</h2>
+      </div>
+      <div className='search-container'>
+        <input
+          type='text'
+          className='search-input'
+          placeholder='Search categories...'
+          value={searchTerm}
+          onChange={(e) => handleFilterChange(e.target.value)}
+        />
+      </div>
+      <ul className='categories'>
+        {menu_list.map((item, index) => (
+          <li key={index}>
+            <label>
+              <input
+                type='checkbox'
+                className='category-checkbox'
+                checked={category.includes(item.menu_name)}
+                onChange={() =>
+                  setCategory((prev) =>
+                    prev === item.menu_name ? 'All' : item.menu_name
+                  )
+                }
+              />
+              {item.menu_name}
+            </label>
+          </li>
+        ))}
+      </ul>
+      <button className='clear-filters' onClick={clearFilters}>
+        Clear Filters
+      </button>
+    </aside>
+  )
+}
+
+export default Sidebar
+
+
+-------------------------- MENU --------------------------------
+
+import React, { useContext, useEffect } from 'react'
+
+import './Menu.css'
+import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
+import SideBar from '../../components/SideBar/SideBar'
+import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
+import { StoreContext } from '../../context/StoreContext'
+
+const Menu = () => {
+  const { loadMoreItems, category } = useContext(StoreContext)
+
+  const handleScrollEventListener = (footerHeight) => {
+    try {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight - 200
+      ) {
+        loadMoreItems()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    const footerEl = document.querySelector('.footer')
+    const footerHeight = footerEl.offsetHeight
+    window.addEventListener('scroll', () =>
+      handleScrollEventListener(footerHeight)
+    )
+    return () => window.removeEventListener('scroll', handleScrollEventListener)
+  }, [category])
+
+  return (
+    <>
+      <div className='menu-heading overlay'>Our Menu</div>
+      <ExploreMenu />
+      <div className='food-display container' id='food-display'>
+        {/* <h2 className='heading-underline'>Top Dishes Near You</h2> */}
+        {/* <div className='food-display-list'>
+          {food_list.map((item, index) => {
+            if (category === 'All' || category === item.category) {
+              return (
+                <FoodItem
+                  key={index}
+                  id={item._id}
+                  name={item.name}
+                  description={item.description}
+                  price={item.price}
+                  image={item.image}
+                />
+              )
+            }
+          })}
+        </div> */}
+        <h2 className='heading-underline our-menu-heading'>Our Menu</h2>
+        <div className='display-grid'>
+          <SideBar />
+          <FoodDisplay />
+        </div>
+        {/* Load More Button */}
+        {/* {visibleItemsCount < filteredItems.length && (
+          <button className='load-more' onClick={loadMoreItems}>
+            Load More
+          </button>
+        )} */}
+      </div>
+    </>
+  )
+}
+
+export default Menu
+
+------------------- MENU CSS ---------------------
+
+.menu-heading {
+    color: #d9d9d9;
+    /* background-color: #323232; */
+    background: url('/bg.jpg') no-repeat bottom center/cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 40vh;
+    font-size: 3.5rem;
+    line-height: 15vw;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.food-display {
+    margin-top: 30px;
+}
+
+.display-grid {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    align-items: start;
+    /* gap: 20px; */
+}
+
+.food-display h2 {
+    font-size: max(2vw, 24px);
+    font-weight: 600;
+    margin-top: 2.5rem;
+}
+
+.food-display-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+    row-gap: 50px;
+    margin-top: 30px;
+}
+
+button.load-more {
+    display: flex;
+    width: 8vw;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: tomato;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.load-more:hover {
+    background-color: coral;
+}
+
+----------------------------------------------------------------------
+
+import React, { useContext } from 'react'
+import './SideBar.css'
+
+import { menu_list, food_list } from '../../assets/assets'
+import { StoreContext } from '../../context/StoreContext'
+
+const Sidebar = () => {
+  const {
+    category,
+    setCategory,
+    handleFilterChange,
+    searchTerm,
+    setSearchTerm,
+    setFilteredItems,
+    maxPrice,
+    setMaxPrice,
+    setVisibleItemsCount,
+    filter,
+  } = useContext(StoreContext)
+
+  const clearFilters = () => {
+    setCategory('All')
+    setSearchTerm('')
+    setFilteredItems(food_list)
+    setMaxPrice(20)
+  }
+
+  const handlePriceChange = (e) => {
+    const price = parseInt(e.target.value, 10)
+    setMaxPrice(price)
+
+    filterItems(filter, price)
+  }
+
+  const filterItems = (searchTerm, price) => {
+    console.log(searchTerm, price)
+    const filtered = food_list.filter(
+      (item) =>
+        (item.name.toLowerCase().includes(searchTerm) ||
+          item.category.toLowerCase().includes(searchTerm)) &&
+        item.price <= price
+    )
+
+    setFilteredItems(filtered)
+    setVisibleItemsCount(4) // Reset visible items when filtering
+  }
+
+  //   const filteredCategories = food_list.filter((item) =>
+  //     item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  //   console.log(filteredCategories)
+
+  return (
+    <aside className='sidebar'>
+      <div className='sidebar-header'>
+        <h2>Filter Food</h2>
+      </div>
+      <div className='search-container'>
+        <input
+          type='text'
+          className='search-input'
+          placeholder='Search categories...'
+          value={searchTerm}
+          onChange={(e) => handleFilterChange(e.target.value)}
+        />
+      </div>
+      <ul className='categories'>
+        {menu_list.map((item, index) => (
+          <li key={index}>
+            <label>
+              <input
+                type='checkbox'
+                className='category-checkbox'
+                checked={category.includes(item.menu_name)}
+                onChange={() =>
+                  setCategory((prev) =>
+                    prev === item.menu_name ? 'All' : item.menu_name
+                  )
+                }
+              />
+              {item.menu_name}
+            </label>
+          </li>
+        ))}
+      </ul>
+      <hr />
+      <div className='price-filter'>
+        <label htmlFor='priceRange'>Price: ${maxPrice}</label>
+        <input
+          type='range'
+          id='priceRange'
+          min='0'
+          max='30'
+          step='1'
+          value={maxPrice}
+          onChange={handlePriceChange}
+        />
+      </div>
+      <button className='clear-filters' onClick={clearFilters}>
+        Clear Filters
+      </button>
+    </aside>
+  )
+}
+
+export default Sidebar
